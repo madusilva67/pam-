@@ -1,98 +1,103 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+    <ScrollView style={{ backgroundColor: 'black' }}>
+      <View style={styles.titulo}>
+        <Text style={styles.text}>HELLO KITTY</Text>
+      </View>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+      <ScrollView style={styles.cont_texto}>
+        <Text>
+          A Hello Kitty é uma personagem criada em 1974 pela Sanrio, uma
+          empresa japonesa. Com seu famoso laço vermelho e aparência delicada,
+          ela se tornou uma das personagens mais conhecidas do mundo. Seu nome
+          verdadeiro é Kitty White, e sua história oficial diz que ela mora na
+          Inglaterra com sua família.
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+          {"\n\n"}
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+          Ao longo dos anos, Hello Kitty apareceu em diversos produtos, como
+          roupas, mochilas, brinquedos, materiais escolares e acessórios. Seu
+          sucesso ultrapassou o público infantil, conquistando também
+          adolescentes e adultos.
+
+          {"\n\n"}
+
+          Isso aconteceu porque a personagem transmite valores como amizade,
+          gentileza e alegria. Além de ser um ícone da cultura pop japonesa,
+          Hello Kitty ajudou a popularizar o estilo "kawaii", que valoriza tudo
+          o que é fofo e encantador.
+
+          {"\n\n"}
+
+          Mesmo após mais de 50 anos de sua criação, ela continua fazendo
+          sucesso em vários países, mostrando que personagens simples podem
+          marcar gerações inteiras.
+        </Text>
+      </ScrollView>
+
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite algo..."
+        />
+      </View>
+
+      <View style={styles.caixa1}>
+        <Text>Caixa</Text>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
+  titulo: {
+    width: 200,
+    marginTop: 40,
+    height: 70,
+    borderRadius: 300,
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    alignSelf: 'center',
   },
-  title: {
+
+  cont_texto: {
+    marginTop: 20,
+    height: 300,
+    width: 800,
+    backgroundColor: 'pink',
+    alignSelf: 'center',
+    padding: 15,
+  },
+
+  text: {
     textAlign: 'center',
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
-  code: {
-    textTransform: 'uppercase',
+
+  input: {
+    height: 40,
+    borderColor: 'blue',
+    borderWidth: 2,
+    width: 500,
+    alignSelf: 'center',
+    marginTop: 20,
+    backgroundColor: 'white',
+    paddingHorizontal: 10,
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+
+  caixa1: {
+    backgroundColor: 'pink',
+    height: 200,
+    width: 200,
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
